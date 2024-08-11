@@ -9,14 +9,17 @@ app.use(async (ctx, next) => {
             index: 'index.html'
         });
     } catch {
-        next();
+        await next();
     }
 });
 
 const router = new Router();
 
-router.get('/api/time', (ctx) => {
-    ctx.response.body = { time: new Date().toISOString() };
+router.get('/api/time', async (ctx) => {
+    const kv = await Deno.openKv();
+    await kv.set(['time'], new Date().toISOString());
+    const res = await kv.get(['time']);
+    ctx.response.body = { result: res.value || 'none' };
 });
 
 app.use(router.routes());
