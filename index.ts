@@ -23,3 +23,6 @@ app.use(router.routes());
 app.use(router.allowedMethods());
 
 app.listen({ port: 8000 });
+
+// eslint-disable-next-line no-console
+console.log('Server is running on port http://localhost:8000');
