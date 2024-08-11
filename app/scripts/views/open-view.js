@@ -786,6 +786,14 @@ class OpenView extends View {
             this.showConfig(storage);
         } else if (storage.list) {
             this.listStorage(storage);
+        } else if (storage.name === 'denokv') {
+            const file = {
+                name: '<denov>',
+                path: '/denokv',
+                rev: null,
+                dir: false
+            };
+            this.openStorageFile(storage, file);
         } else {
             Alerts.notImplemented();
         }

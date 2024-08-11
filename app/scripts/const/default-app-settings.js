@@ -9,7 +9,7 @@ const DefaultAppSettings = {
     autoUpdate: 'install', // auto-update options: "install", "check", ""
     clipboardSeconds: 0, // number of seconds after which the clipboard will be cleared
     autoSave: true, // auto-save open files
-    autoSaveInterval: 0, // interval between performing automatic sync, minutes, -1: on every change
+    autoSaveInterval: -1, // interval between performing automatic sync, minutes, -1: on every change
     rememberKeyFiles: 'path', // remember keyfiles selected on the Open screen
     idleMinutes: 15, // app lock timeout after inactivity, minutes
     minimizeOnClose: false, // minimise the app instead of closing
@@ -58,7 +58,7 @@ const DefaultAppSettings = {
     yubiKeyRememberChalResp: false, // remember YubiKey challenge-response codes while the app is open
     yubiKeyStuckWorkaround: false, // enable the workaround for stuck YubiKeys
 
-    canOpen: false, // can select and open new files
+    canOpen: true, // can select and open new files
     canOpenDemo: false, // can open a demo file
     canOpenSettings: false, // can go to settings
     canCreate: false, // can create new files
@@ -68,11 +68,11 @@ const DefaultAppSettings = {
     canExportXml: true, // can export files as XML
     canExportHtml: true, // can export files as HTML
     canSaveTo: true, // can save existing files to filesystem
-    canOpenStorage: false, // can open files from cloud storage providers
-    canOpenGenerator: true, // can open password generator
+    canOpenStorage: true, // can open files from cloud storage providers
+    canOpenGenerator: false, // can open password generator
     canOpenOtpDevice: false, // can open OTP codes from USB tokens
 
-    dropbox: false, // enable Dropbox integration
+    dropbox: true, // enable Dropbox integration
     dropboxFolder: null, // default folder path
     dropboxAppKey: null, // custom Dropbox app key
     dropboxSecret: null, // custom Dropbox app secret

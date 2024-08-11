@@ -1,6 +1,7 @@
 import { Launcher } from 'comp/launcher';
 import { StorageCache } from 'storage/impl/storage-cache';
 import { StorageDropbox } from 'storage/impl/storage-dropbox';
+import { StorageDenoKv } from 'storage/impl/storage-denokv';
 import { StorageFile } from 'storage/impl/storage-file';
 import { StorageFileCache } from 'storage/impl/storage-file-cache';
 import { StorageGDrive } from 'storage/impl/storage-gdrive';
@@ -19,7 +20,8 @@ const ThirdPartyStorage = {
     gdrive: new StorageGDrive(),
     onedrive: new StorageOneDrive(),
     msteams: new StorageTeams(),
-    webdav: new StorageWebDav()
+    webdav: new StorageWebDav(),
+    denokv: new StorageDenoKv()
 };
 
 const Storage = BuiltInStorage;
