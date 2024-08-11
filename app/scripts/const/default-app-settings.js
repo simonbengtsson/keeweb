@@ -1,6 +1,6 @@
 const DefaultAppSettings = {
     theme: null, // UI theme
-    autoSwitchTheme: false, // automatically switch between light and dark theme
+    autoSwitchTheme: true, // automatically switch between light and dark theme
     locale: null, // user interface language
     expandGroups: true, // show entries from all subgroups
     listViewWidth: null, // width of the entry list representation
@@ -29,7 +29,7 @@ const DefaultAppSettings = {
     skipOpenLocalWarn: false, // disable the warning about opening a local file
     hideEmptyFields: false, // hide empty fields in entries
     skipHttpsWarning: false, // disable the non-HTTPS warning
-    demoOpened: false, // hide the demo button inside the More... menu
+    demoOpened: true, // hide the demo button inside the More... menu
     fontSize: 0, // font size: 0, 1, 2
     tableViewColumns: null, // columns displayed in the table view
     generatorPresets: null, // presets used in the password generator
@@ -39,8 +39,8 @@ const DefaultAppSettings = {
     useGroupIconForEntries: false, // automatically use group icon when creating new entries
     enableUsb: true, // enable interaction with USB devices
     fieldLabelDblClickAutoType: false, // trigger auto-type by doubleclicking field label
-    auditPasswords: true, // enable password audit
-    auditPasswordEntropy: true, // show warnings for weak passwords
+    auditPasswords: false, // enable password audit
+    auditPasswordEntropy: false, // show warnings for weak passwords
     excludePinsFromAudit: true, // exclude PIN codes from audit
     checkPasswordsOnHIBP: false, // check passwords on Have I Been Pwned
     auditPasswordAge: 0, // show warnings about old passwords, number of years, 0 = disabled
@@ -51,41 +51,41 @@ const DefaultAppSettings = {
     extensionFocusIfLocked: true, // focus KeeWeb if a browser extension tries to connect while KeeWeb is locked
     extensionFocusIfEmpty: true, // show the entry selection screen if there's no match found by URL
 
-    yubiKeyShowIcon: true, // show an icon to open OTP codes from YubiKey
+    yubiKeyShowIcon: false, // show an icon to open OTP codes from YubiKey
     yubiKeyAutoOpen: false, // auto-load one-time codes when there are open files
     yubiKeyMatchEntries: true, // show matching one-time codes in entries
     yubiKeyShowChalResp: true, // show YubiKey challenge-response option
     yubiKeyRememberChalResp: false, // remember YubiKey challenge-response codes while the app is open
     yubiKeyStuckWorkaround: false, // enable the workaround for stuck YubiKeys
 
-    canOpen: true, // can select and open new files
-    canOpenDemo: true, // can open a demo file
-    canOpenSettings: true, // can go to settings
-    canCreate: true, // can create new files
-    canImportXml: true, // can import files from XML
-    canImportCsv: true, // can import files from CSV
-    canRemoveLatest: true, // can remove files from the recent file list
+    canOpen: false, // can select and open new files
+    canOpenDemo: false, // can open a demo file
+    canOpenSettings: false, // can go to settings
+    canCreate: false, // can create new files
+    canImportXml: false, // can import files from XML
+    canImportCsv: false, // can import files from CSV
+    canRemoveLatest: false, // can remove files from the recent file list
     canExportXml: true, // can export files as XML
     canExportHtml: true, // can export files as HTML
     canSaveTo: true, // can save existing files to filesystem
-    canOpenStorage: true, // can open files from cloud storage providers
+    canOpenStorage: false, // can open files from cloud storage providers
     canOpenGenerator: true, // can open password generator
-    canOpenOtpDevice: true, // can open OTP codes from USB tokens
+    canOpenOtpDevice: false, // can open OTP codes from USB tokens
 
-    dropbox: true, // enable Dropbox integration
+    dropbox: false, // enable Dropbox integration
     dropboxFolder: null, // default folder path
     dropboxAppKey: null, // custom Dropbox app key
     dropboxSecret: null, // custom Dropbox app secret
 
-    webdav: true, // enable WebDAV integration
+    webdav: false, // enable WebDAV integration
     webdavSaveMethod: 'move', // how to save files with WebDAV: "move" or "put"
     webdavStatReload: false, // WebDAV: reload the file instead of relying on Last-Modified
 
-    gdrive: true, // enable Google Drive integration
+    gdrive: false, // enable Google Drive integration
     gdriveClientId: null, // custom Google Drive client id
     gdriveClientSecret: null, // custom Google Drive client secret
 
-    onedrive: true, // enable OneDrive integration
+    onedrive: false, // enable OneDrive integration
     onedriveClientId: null, // custom OneDrive client id
     onedriveClientSecret: null, // custom OneDrive client secret
     onedriveTenantId: null, // custom OneDrive tenant id
