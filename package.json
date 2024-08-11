@@ -110,6 +110,7 @@
   },
   "scripts": {
     "start": "grunt",
+    "build": "npm run set-legacy && grunt",
     "lint": "grunt eslint",
     "test": "grunt test",
     "build-beta": "grunt --beta && cp dist/index.html ../keeweb-beta/index.html && cd ../keeweb-beta && git add index.html && git commit -a -m 'beta' && git push origin master",
