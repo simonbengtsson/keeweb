@@ -19,8 +19,14 @@ class StorageDenoKv extends StorageBase {
 
     save(id, opts, data, callback) {
         // this.io.save(id, data, callback);
-        this.logger.debug('SAVING', id, data);
-        callback();
+        const base64String = window.btoa(String.fromCharCode(...new Uint8Array(data)));
+        this.logger.debug('SAVING', id, data, base64String);
+        // fetch('/api/save', {
+        //     method: 'POST',
+        //     body: JSON.stringify({ id, base64String }),
+        // }).then(() => {
+        //     callback();
+        // });
     }
 
     load(id, opts, callback) {
@@ -28,6 +34,12 @@ class StorageDenoKv extends StorageBase {
         const array = Uint8Array.from(window.atob(vaultBase64Demo), (c) => c.charCodeAt(0));
         this.logger.debug('LOADING DUMMY', id, array.buffer);
         callback(null, array.buffer);
+        // fetch('/api/read')
+        //     .then((it) => it.json())
+        //     .then(({ base64File }) => {
+        //         const array = Uint8Array.from(window.atob(base64File), (c) => c.charCodeAt(0));
+        //         callback(null, array.buffer);
+        //     });
     }
 
     remove(id, opts, callback) {
