@@ -46,7 +46,7 @@ const DefaultAppSettings = {
     auditPasswordAge: 0, // show warnings about old passwords, number of years, 0 = disabled
     deviceOwnerAuth: null, // Touch ID: null / 'memory' / 'file'
     deviceOwnerAuthTimeoutMinutes: 0, // how often master password is required with Touch ID
-    disableOfflineStorage: false, // don't cache loaded files in offline storage
+    disableOfflineStorage: true, // don't cache loaded files in offline storage
     shortLivedStorageToken: false, // short-lived sessions in cloud storage providers
     extensionFocusIfLocked: true, // focus KeeWeb if a browser extension tries to connect while KeeWeb is locked
     extensionFocusIfEmpty: true, // show the entry selection screen if there's no match found by URL
@@ -58,7 +58,7 @@ const DefaultAppSettings = {
     yubiKeyRememberChalResp: false, // remember YubiKey challenge-response codes while the app is open
     yubiKeyStuckWorkaround: false, // enable the workaround for stuck YubiKeys
 
-    canOpen: true, // can select and open new files
+    canOpen: false, // can select and open new files
     canOpenDemo: false, // can open a demo file
     canOpenSettings: false, // can go to settings
     canCreate: false, // can create new files
@@ -72,7 +72,7 @@ const DefaultAppSettings = {
     canOpenGenerator: false, // can open password generator
     canOpenOtpDevice: false, // can open OTP codes from USB tokens
 
-    dropbox: true, // enable Dropbox integration
+    dropbox: false, // enable Dropbox integration
     dropboxFolder: null, // default folder path
     dropboxAppKey: null, // custom Dropbox app key
     dropboxSecret: null, // custom Dropbox app secret
