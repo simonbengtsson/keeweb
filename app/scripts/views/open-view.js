@@ -788,7 +788,7 @@ class OpenView extends View {
             this.listStorage(storage);
         } else if (storage.name === 'denokv') {
             const file = {
-                name: '<denov>',
+                name: 'Database',
                 path: '/denokv',
                 rev: null,
                 dir: false

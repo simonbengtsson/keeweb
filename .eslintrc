@@ -2,12 +2,12 @@
     "plugins": ["prettier", "import", "babel"],
     "extends": ["standard", "eslint:recommended", "plugin:prettier/recommended"],
     "rules": {
+        "spaced-comment": "off",
         "semi": ["error", "always"],
         "one-var": "off",
         "space-before-function-paren": "off",
         "no-throw-literal": "off",
         "camelcase": ["error", { "properties": "always" }],
-        "no-console": "error",
         "no-alert": "error",
         "no-debugger": "error",
         "prefer-arrow-callback": "error",

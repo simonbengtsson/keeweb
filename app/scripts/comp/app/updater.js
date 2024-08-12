@@ -41,6 +41,10 @@ const Updater = {
     init() {
         this.scheduleNextCheck();
         if (!Launcher && navigator.serviceWorker && !RuntimeInfo.beta && !RuntimeInfo.devMode) {
+            const enableServiceWorker = false;
+            if (!enableServiceWorker) {
+                return; // Disable for now to simplify testing with /dist files
+            }
             navigator.serviceWorker
                 .register('service-worker.js')
                 .then((reg) => {
