@@ -1,5 +1,5 @@
 import { setupApp } from './flownservices.ts';
-import { app } from './app.ts'
+import { app } from './app.ts';
 
 setupApp(() => ({
     name: 'Keeweb',

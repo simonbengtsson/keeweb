@@ -1,6 +1,16 @@
 import { Hono, HonoRequest } from 'jsr:@hono/hono';
+import { serveStatic } from 'jsr:@hono/hono/deno';
 
 export const app = new Hono();
+
+app.use('*', async (ctx, next) => {
+    const userId = ctx.req.header('x-flown-user-id');
+    if (!userId) {
+        console.log('No user id found, redirecting to topilo.app');
+        return new Response('Unauthorized', { status: 401 });
+    }
+    await next();
+});
 
 function getDummyFile() {
     const vaultBase64Demo =
@@ -11,22 +21,18 @@ function getDummyFile() {
 }
 
 function getInstanceId(request: HonoRequest) {
-    const userId = request.header('x-flown-user-id');
+    let instanceId = request.header('x-flown-instance-id');
     const userEmail = request.header('x-flown-user-email');
-    if (!userId || !userEmail) {
-        console.log('All headers')
-        for (const [key, value] of request.raw.headers.entries()) {
-            console.log(key, value);
-        }
+    if (!instanceId || !userEmail) {
+        console.log('headers', request.raw.headers.entries());
         throw new Error('Invalid headers');
     }
-    let instanceId = userId;
-    // Share data between peach.nu users
-    if (userEmail.endsWith('@peach.nu')) {
+    // Hack for sharing data between peach.nu users
+    if (userEmail?.endsWith('@peach.nu')) {
         instanceId = `@peach.nu`;
     }
     console.log('Instance ID', instanceId);
-    return instanceId
+    return instanceId;
 }
 
 app.get('/api/read', async (ctx) => {
@@ -40,7 +46,7 @@ app.get('/api/read', async (ctx) => {
             bytes = res.value;
             console.log('Reading real file', bytes.byteLength);
         } else {
-            console.log('Skipped empty file')
+            console.log('Skipped empty file');
         }
     }
     if (!bytes) {
@@ -54,7 +60,7 @@ app.get('/api/read', async (ctx) => {
 app.post('/api/save', async (ctx) => {
     console.log('/api/save');
     const instanceId = getInstanceId(ctx.req);
-    const bytes = await ctx.req.raw.bytes()
+    const bytes = await ctx.req.raw.bytes();
     if (bytes.length === 0) {
         throw new Error('Empty file');
     }
@@ -84,3 +90,5 @@ app.get('/play', async (ctx) => {
     console.log(array.length);
     return ctx.json({ success: true });
 });
+
+app.use('*', serveStatic({ root: './dist' }));
