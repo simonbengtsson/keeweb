@@ -33,22 +33,17 @@ export default async function handler(request, flownCtx) {
         console.log('/api/read request');
         const instanceId = getInstanceId(ctx.req);
         const kv = await flownCtx.kvStore();
-        const item = await kv.getRaw(`files_${instanceId}`);
-        let bytes = null;
-        if (item instanceof Uint8Array) {
-            if (item.byteLength > 0) {
-                bytes = item;
-                console.log('Reading real file', bytes?.byteLength);
-            } else {
-                console.log('Skipped empty file');
-            }
+        let buffer = await kv.getRaw(`files_${instanceId}`);
+        if (buffer instanceof ArrayBuffer && buffer.byteLength === 0) {
+            buffer = null;
+            console.log('Skipped empty file');
         }
-        if (!bytes) {
-            bytes = getDummyFile();
-            console.log('Reading dummy file', bytes.byteLength);
+        if (!buffer) {
+            buffer = getDummyFile().buffer;
+            console.log('Reading dummy file', buffer.byteLength);
         }
-        console.log('/api/read response', bytes.byteLength, bytes.byteLength);
-        return new Response(bytes.buffer);
+        console.log('/api/read response', buffer.byteLength);
+        return new Response(buffer);
     });
 
     app.post('/api/save', async (ctx) => {
