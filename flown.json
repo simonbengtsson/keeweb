@@ -1,0 +1,12 @@
+{
+    "id": "io.flown.keeweb",
+    "name": "Keeweb",
+    "version": "1.0.0",
+    "subtitle": "Password manager",
+    "icon": "./icon.png",
+    "description": "A simple password manager in the browser",
+    "repository": {
+        "url": "https://github.com/simonbengtsson/keeweb"
+    },
+    "allowPublicAccess": false
+}
