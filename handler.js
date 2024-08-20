@@ -33,7 +33,7 @@ export default async function handler(request, flownCtx) {
         console.log('/api/read request');
         const instanceId = getInstanceId(ctx.req);
         const kv = await flownCtx.kvStore();
-        const item = await kv.get(`files_${instanceId}`);
+        const item = await kv.getRaw(`files_${instanceId}`);
         let bytes = null;
         if (item instanceof Uint8Array) {
             if (item.byteLength > 0) {
