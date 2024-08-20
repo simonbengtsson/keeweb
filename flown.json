@@ -6,7 +6,8 @@
     "icon": "./icon.png",
     "description": "A simple password manager in the browser",
     "repository": {
-        "url": "https://github.com/simonbengtsson/keeweb"
+        "url": "https://github.com/simonbengtsson/keeweb",
+        "path": "dist"
     },
     "allowPublicAccess": false
 }
