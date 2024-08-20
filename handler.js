@@ -33,11 +33,11 @@ export default async function handler(request, flownCtx) {
         console.log('/api/read request');
         const instanceId = getInstanceId(ctx.req);
         const kv = await flownCtx.kvStore();
-        const res = await kv.getItem(`files_${instanceId}`);
+        const item = await kv.getItem(`files_${instanceId}`);
         let bytes = null;
-        if (res.value instanceof Uint8Array) {
-            if (res.value.byteLength > 0) {
-                bytes = res.value;
+        if (item instanceof Uint8Array) {
+            if (item.byteLength > 0) {
+                bytes = item;
                 console.log('Reading real file', bytes?.byteLength);
             } else {
                 console.log('Skipped empty file');
