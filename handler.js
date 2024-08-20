@@ -33,7 +33,7 @@ export default async function handler(request, flownCtx) {
         console.log('/api/read request');
         const instanceId = getInstanceId(ctx.req);
         const kv = await flownCtx.kvStore();
-        const item = await kv.getItem(`files_${instanceId}`);
+        const item = await kv.get(`files_${instanceId}`);
         let bytes = null;
         if (item instanceof Uint8Array) {
             if (item.byteLength > 0) {
@@ -60,7 +60,7 @@ export default async function handler(request, flownCtx) {
         }
         console.log('/api/save bytes', bytes.byteLength);
         const kv = await flownCtx.kvStore();
-        await kv.setItem(`files_${instanceId}`, bytes);
+        await kv.put(`files_${instanceId}`, bytes);
         return ctx.json({ success: true });
     });
 
