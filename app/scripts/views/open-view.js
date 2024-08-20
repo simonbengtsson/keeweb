@@ -786,10 +786,10 @@ class OpenView extends View {
             this.showConfig(storage);
         } else if (storage.list) {
             this.listStorage(storage);
-        } else if (storage.name === 'denokv') {
+        } else if (storage.name === 'remote') {
             const file = {
                 name: 'Database',
-                path: '/denokv',
+                path: '/remote',
                 rev: null,
                 dir: false
             };

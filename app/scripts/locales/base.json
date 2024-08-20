@@ -41,7 +41,7 @@
   "device": "device",
   "webdav": "WebDAV",
   "dropbox": "Dropbox",
-  "denokv": "Denokv",
+  "remote": "Remote",
   "gdrive": "Google Drive",
   "onedrive": "OneDrive",
   "msteams": "Microsoft Teams",

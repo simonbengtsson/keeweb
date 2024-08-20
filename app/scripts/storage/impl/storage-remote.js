@@ -1,7 +1,7 @@
 import { StorageBase } from 'storage/storage-base';
 
-class StorageDenoKv extends StorageBase {
-    name = 'denokv';
+class StorageRemote extends StorageBase {
+    name = 'remote';
     icon = 'database';
     enabled = true;
 
@@ -52,4 +52,4 @@ class StorageDenoKv extends StorageBase {
     }
 }
 
-export { StorageDenoKv };
+export { StorageRemote };
