@@ -64,8 +64,8 @@ export default async function handler(request, flownCtx) {
         return ctx.json({ success: true });
     });
 
-    app.get('*', (ctx) => {
-        return ctx.assetsResponse(request);
+    app.get('*', () => {
+        return flownCtx.assetsResponse();
     });
 
     return app.fetch(request);
