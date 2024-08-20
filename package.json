@@ -111,7 +111,7 @@
   },
   "scripts": {
     "start": "grunt",
-    "build": "npm run set-legacy && grunt",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider && grunt && cp handler.js dist/handler.js",
     "lint": "grunt eslint",
     "test": "grunt test",
     "build-beta": "grunt --beta && cp dist/index.html ../keeweb-beta/index.html && cd ../keeweb-beta && git add index.html && git commit -a -m 'beta' && git push origin master",
