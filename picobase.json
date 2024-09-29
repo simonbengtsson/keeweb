@@ -1,0 +1,9 @@
+{
+    "identifier": "co.picobase.keeweb",
+    "name": "Keeweb",
+    "subtitle": "Password manager",
+    "screenshots": [],
+    "description": "A picobase version of KeeWeb",
+    "icon": "./icon.png"
+}
+  

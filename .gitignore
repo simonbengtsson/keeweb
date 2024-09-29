@@ -17,3 +17,5 @@ xcuserdata/
 .vscode/
 *.iml
 test/dist/
+archive.zip
+picobasedist/

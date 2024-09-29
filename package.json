@@ -110,8 +110,11 @@
     "keytar": "^7.7.0"
   },
   "scripts": {
+    "picobase-deploy": "npm run build && npm run picobase-copy && npm run picobase-zip && open https://picobase.co/developer",
+    "picobase-copy": "rm -rf picobasedist && mkdir picobasedist && cp index.js picobasedist/index.js && cp picobase.json picobasedist/picobase.json && cp -R dist/ picobasedist/public",
+    "picobase-zip": "cd picobasedist && zip -r ../archive.zip . && cd ..",
     "start": "grunt",
-    "build": "NODE_OPTIONS=--openssl-legacy-provider grunt && cp handler.js dist/handler.js",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider grunt",
     "lint": "grunt eslint",
     "test": "grunt test",
     "build-beta": "grunt --beta && cp dist/index.html ../keeweb-beta/index.html && cd ../keeweb-beta && git add index.html && git commit -a -m 'beta' && git push origin master",

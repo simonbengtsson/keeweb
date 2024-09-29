@@ -1,17 +1,12 @@
-import { Hono } from 'hono';
-
 // eslint-disable-next-line no-restricted-syntax, import/no-default-export
-export default async function handler(request, flownCtx) {
-    const app = new Hono();
+export default {
+    async fetch(request, ctx) {
+        return handler(request, ctx);
+    }
+};
 
-    app.use('*', async (ctx, next) => {
-        const userId = ctx.req.header('x-flown-user-id');
-        if (!userId) {
-            console.log('No user id found');
-            return new Response('Unauthorized', { status: 401 });
-        }
-        await next();
-    });
+async function handler(request, picobaseCtx) {
+    const url = new URL(request.url);
 
     function getDummyFile() {
         const vaultBase64Demo =
@@ -21,18 +16,10 @@ export default async function handler(request, flownCtx) {
         return array;
     }
 
-    function getInstanceId(req) {
-        const instanceId = req.header('x-flown-instance-id');
-        if (!instanceId) {
-            throw new Error('No instance id found');
-        }
-        return instanceId;
-    }
-
-    app.get('/api/read', async (ctx) => {
+    if (url.pathname === '/api/read') {
         console.log('/api/read request');
-        const instanceId = getInstanceId(ctx.req);
-        const kv = await flownCtx.kvStore();
+        const instanceId = picobaseCtx.instanceId;
+        const kv = await picobaseCtx.kvStore();
         let buffer = await kv.getRaw(`files_${instanceId}`);
         if (buffer instanceof ArrayBuffer && buffer.byteLength === 0) {
             buffer = null;
@@ -44,24 +31,24 @@ export default async function handler(request, flownCtx) {
         }
         console.log('/api/read response', buffer.byteLength);
         return new Response(buffer);
-    });
+    }
 
-    app.post('/api/save', async (ctx) => {
+    if (url.pathname === '/api/save') {
         console.log('/api/save');
-        const instanceId = getInstanceId(ctx.req);
-        const bytes = await ctx.req.raw.bytes();
+        const instanceId = picobaseCtx.instanceId;
+        const bytes = await request.arrayBuffer();
         if (bytes.length === 0) {
             throw new Error('Empty file');
         }
         console.log('/api/save bytes', bytes.byteLength);
-        const kv = await flownCtx.kvStore();
+        const kv = await picobaseCtx.kvStore();
         await kv.put(`files_${instanceId}`, bytes);
-        return ctx.json({ success: true });
-    });
+        return new Response(JSON.stringify({ success: true }));
+    }
 
-    app.get('*', () => {
-        return flownCtx.assetsResponse();
-    });
+    if (url.pathname === '/version') {
+        return new Response(JSON.stringify({ version: 'sept 29 17:54' }));
+    }
 
-    return app.fetch(request);
+    return new Response('Not found', { status: 404 });
 }
